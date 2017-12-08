@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_main));
             this.pbx_main = new System.Windows.Forms.PictureBox();
             this.tmr_screen = new System.Windows.Forms.Timer(this.components);
             this.ssp_main = new System.Windows.Forms.StatusStrip();
@@ -96,6 +97,7 @@
             this.ClientSize = new System.Drawing.Size(284, 261);
             this.Controls.Add(this.ssp_main);
             this.Controls.Add(this.pbx_main);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frm_main";
             this.Text = "ScreenMonitor";
             this.Load += new System.EventHandler(this.frm_main_Load);
