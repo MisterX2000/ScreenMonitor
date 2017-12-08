@@ -18,7 +18,7 @@ namespace ScreenMonitor
         }
 
         private int screenInd;
-        private int screenScale = 4;
+        private float screenScale = 3;
 
         private void frm_main_Load(object sender, EventArgs e)
         {
@@ -28,7 +28,6 @@ namespace ScreenMonitor
         private void tmr_screen_Tick(object sender, EventArgs e)
         {
             pbx_main.Image = GetScreen(Screen.AllScreens[screenInd]);
-            ChangeWindow();
             GC.Collect();
         }
 
@@ -47,10 +46,19 @@ namespace ScreenMonitor
             return screenshot;
         }
 
-        private void ChangeWindow()
+        private void ChangeWindow(int index = 0, float scale = 0)
         {
+            if (screenInd + index < Screen.AllScreens.Length && screenInd + index >= 0)
+                screenInd += index;
+
+            if (screenScale + scale <= 10  && screenScale + scale >= 1)
+                screenScale += scale;
+
             var s = Screen.AllScreens[screenInd].Bounds.Size;
-            this.ClientSize = new Size(s.Width / screenScale, s.Height / screenScale);
+            ClientSize = new Size((int) (s.Width / screenScale), (int) (s.Height / screenScale) + 25);
+
+            tss_monitor.Text = "Monitor: " + screenInd;
+            tss_Scale.Text = "Scale: " + screenScale.ToString("F1");
         }
 
         private void frm_main_KeyDown(object sender, KeyEventArgs e)
@@ -58,26 +66,20 @@ namespace ScreenMonitor
             switch (e.KeyCode)
             {
                 case Keys.Right:
-                    if (screenInd < Screen.AllScreens.Length - 1)
-                        screenInd += 1;
+                    ChangeWindow(1);
                     break;
                 case Keys.Left:
-                    if (screenInd > 0)
-                        screenInd -= 1;
+                    ChangeWindow(-1);
                     break;
                 case Keys.Up:
-                    if (screenScale > 1)
-                    {
-                        screenScale -= 1;
-                        ChangeWindow();
-                    }
+                    ChangeWindow(0, -.5f);
                     break;
                 case Keys.Down:
-                    if (screenScale < 10)
-                    {
-                        screenScale += 1;
-                        ChangeWindow();
-                    }
+                    ChangeWindow(0, .5f);
+                    break;
+                case Keys.T:
+                    TopMost = !TopMost;
+                    tss_top.Visible = TopMost;
                     break;
             }
         }
