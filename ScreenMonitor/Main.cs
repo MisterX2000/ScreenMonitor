@@ -13,10 +13,13 @@ namespace ScreenMonitor
 
         private int screenInd;
         private float screenScale = 3;
+        private int refreshInd = 2;
+        private readonly int[] refreshList = {10, 50, 100, 250, 500, 1000, 2500, 5000};
 
         private void frm_main_Load(object sender, EventArgs e)
         {
             ChangeWindow();
+            ChangeRate();
         }
 
         private void tmr_screen_Tick(object sender, EventArgs e)
@@ -55,6 +58,15 @@ namespace ScreenMonitor
             tss_Scale.Text = "Scale: " + screenScale.ToString("F1");
         }
 
+        private void ChangeRate(int index = 0)
+        {
+            if (refreshInd + index < refreshList.Length && refreshInd + index >= 0)
+                refreshInd += index;
+
+            tmr_screen.Interval = refreshList[refreshInd];
+            tss_rate.Text = "Rate: " + refreshList[refreshInd];
+        }
+
         private void frm_main_KeyDown(object sender, KeyEventArgs e)
         {
             switch (e.KeyCode)
@@ -71,6 +83,13 @@ namespace ScreenMonitor
                 case Keys.Down:
                     ChangeWindow(0, .5f);
                     break;
+                case Keys.PageUp:
+                    ChangeRate(1);
+                    break;
+                case Keys.PageDown:
+                    ChangeRate(-1);
+                    break;
+
                 case Keys.T:
                     TopMost = !TopMost;
                     tss_top.Visible = TopMost;

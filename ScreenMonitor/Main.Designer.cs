@@ -36,6 +36,7 @@
             this.tss_monitor = new System.Windows.Forms.ToolStripStatusLabel();
             this.tss_Scale = new System.Windows.Forms.ToolStripStatusLabel();
             this.tss_top = new System.Windows.Forms.ToolStripStatusLabel();
+            this.tss_rate = new System.Windows.Forms.ToolStripStatusLabel();
             ((System.ComponentModel.ISupportInitialize)(this.pbx_main)).BeginInit();
             this.ssp_main.SuspendLayout();
             this.SuspendLayout();
@@ -64,6 +65,7 @@
             this.ssp_main.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tss_monitor,
             this.tss_Scale,
+            this.tss_rate,
             this.tss_top});
             this.ssp_main.Location = new System.Drawing.Point(0, 239);
             this.ssp_main.Name = "ssp_main";
@@ -89,6 +91,12 @@
             this.tss_top.Size = new System.Drawing.Size(54, 17);
             this.tss_top.Text = "TopMost";
             this.tss_top.Visible = false;
+            // 
+            // tss_rate
+            // 
+            this.tss_rate.Name = "tss_rate";
+            this.tss_rate.Size = new System.Drawing.Size(30, 17);
+            this.tss_rate.Text = "Rate";
             // 
             // frm_main
             // 
@@ -118,6 +126,7 @@
         private System.Windows.Forms.ToolStripStatusLabel tss_Scale;
         private System.Windows.Forms.ToolStripStatusLabel tss_monitor;
         private System.Windows.Forms.ToolStripStatusLabel tss_top;
+        private System.Windows.Forms.ToolStripStatusLabel tss_rate;
     }
 }
 
