@@ -24,7 +24,17 @@ namespace ScreenMonitor
 
         private void tmr_screen_Tick(object sender, EventArgs e)
         {
-            pbx_main.Image = GetScreen(Screen.AllScreens[screenInd]);
+            try
+            {
+                pbx_main.Image = GetScreen(Screen.AllScreens[screenInd]);
+            }
+            catch (IndexOutOfRangeException ex)
+            {
+                screenInd = 0;
+                ChangeWindow();
+                MessageBox.Show("The current screen was deactivated or not found.\nReturning to screen 1.", "Screen not found",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
             GC.Collect();
         }
 
@@ -54,8 +64,9 @@ namespace ScreenMonitor
             var s = Screen.AllScreens[screenInd].Bounds.Size;
             ClientSize = new Size((int) (s.Width / screenScale), (int) (s.Height / screenScale) + 25);
 
-            tss_monitor.Text = "Monitor: " + screenInd;
-            tss_Scale.Text = "Scale: " + screenScale.ToString("F1");
+            tss_screen.Text = "Screen: " + (screenInd + 1);
+            tss_scale.Text = "Scale: " + screenScale.ToString("F1");
+            Text = ProductName + " - " + (screenInd + 1);
         }
 
         private void ChangeRate(int index = 0)

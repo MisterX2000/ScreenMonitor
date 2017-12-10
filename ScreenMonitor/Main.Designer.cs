@@ -33,10 +33,10 @@
             this.pbx_main = new System.Windows.Forms.PictureBox();
             this.tmr_screen = new System.Windows.Forms.Timer(this.components);
             this.ssp_main = new System.Windows.Forms.StatusStrip();
-            this.tss_monitor = new System.Windows.Forms.ToolStripStatusLabel();
-            this.tss_Scale = new System.Windows.Forms.ToolStripStatusLabel();
-            this.tss_top = new System.Windows.Forms.ToolStripStatusLabel();
+            this.tss_screen = new System.Windows.Forms.ToolStripStatusLabel();
+            this.tss_scale = new System.Windows.Forms.ToolStripStatusLabel();
             this.tss_rate = new System.Windows.Forms.ToolStripStatusLabel();
+            this.tss_top = new System.Windows.Forms.ToolStripStatusLabel();
             ((System.ComponentModel.ISupportInitialize)(this.pbx_main)).BeginInit();
             this.ssp_main.SuspendLayout();
             this.SuspendLayout();
@@ -63,8 +63,8 @@
             // ssp_main
             // 
             this.ssp_main.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tss_monitor,
-            this.tss_Scale,
+            this.tss_screen,
+            this.tss_scale,
             this.tss_rate,
             this.tss_top});
             this.ssp_main.Location = new System.Drawing.Point(0, 239);
@@ -73,17 +73,23 @@
             this.ssp_main.TabIndex = 1;
             this.ssp_main.Text = "statusStrip1";
             // 
-            // tss_monitor
+            // tss_screen
             // 
-            this.tss_monitor.Name = "tss_monitor";
-            this.tss_monitor.Size = new System.Drawing.Size(50, 17);
-            this.tss_monitor.Text = "Monitor";
+            this.tss_screen.Name = "tss_screen";
+            this.tss_screen.Size = new System.Drawing.Size(42, 17);
+            this.tss_screen.Text = "Screen";
             // 
-            // tss_Scale
+            // tss_scale
             // 
-            this.tss_Scale.Name = "tss_Scale";
-            this.tss_Scale.Size = new System.Drawing.Size(34, 17);
-            this.tss_Scale.Text = "Scale";
+            this.tss_scale.Name = "tss_scale";
+            this.tss_scale.Size = new System.Drawing.Size(34, 17);
+            this.tss_scale.Text = "Scale";
+            // 
+            // tss_rate
+            // 
+            this.tss_rate.Name = "tss_rate";
+            this.tss_rate.Size = new System.Drawing.Size(30, 17);
+            this.tss_rate.Text = "Rate";
             // 
             // tss_top
             // 
@@ -91,12 +97,6 @@
             this.tss_top.Size = new System.Drawing.Size(54, 17);
             this.tss_top.Text = "TopMost";
             this.tss_top.Visible = false;
-            // 
-            // tss_rate
-            // 
-            this.tss_rate.Name = "tss_rate";
-            this.tss_rate.Size = new System.Drawing.Size(30, 17);
-            this.tss_rate.Text = "Rate";
             // 
             // frm_main
             // 
@@ -123,8 +123,8 @@
         private System.Windows.Forms.PictureBox pbx_main;
         private System.Windows.Forms.Timer tmr_screen;
         private System.Windows.Forms.StatusStrip ssp_main;
-        private System.Windows.Forms.ToolStripStatusLabel tss_Scale;
-        private System.Windows.Forms.ToolStripStatusLabel tss_monitor;
+        private System.Windows.Forms.ToolStripStatusLabel tss_scale;
+        private System.Windows.Forms.ToolStripStatusLabel tss_screen;
         private System.Windows.Forms.ToolStripStatusLabel tss_top;
         private System.Windows.Forms.ToolStripStatusLabel tss_rate;
     }
