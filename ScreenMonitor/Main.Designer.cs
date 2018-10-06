@@ -32,13 +32,14 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_main));
             this.pbx_main = new System.Windows.Forms.PictureBox();
             this.tmr_screen = new System.Windows.Forms.Timer(this.components);
-            this.ssp_main = new System.Windows.Forms.StatusStrip();
+            this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.tss_screen = new System.Windows.Forms.ToolStripStatusLabel();
             this.tss_scale = new System.Windows.Forms.ToolStripStatusLabel();
             this.tss_rate = new System.Windows.Forms.ToolStripStatusLabel();
             this.tss_top = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.pbx_main)).BeginInit();
-            this.ssp_main.SuspendLayout();
+            this.statusStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // pbx_main
@@ -60,18 +61,21 @@
             this.tmr_screen.Interval = 10;
             this.tmr_screen.Tick += new System.EventHandler(this.tmr_screen_Tick);
             // 
-            // ssp_main
+            // statusStrip
             // 
-            this.ssp_main.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tss_screen,
             this.tss_scale,
             this.tss_rate,
             this.tss_top});
-            this.ssp_main.Location = new System.Drawing.Point(0, 239);
-            this.ssp_main.Name = "ssp_main";
-            this.ssp_main.Size = new System.Drawing.Size(284, 22);
-            this.ssp_main.TabIndex = 1;
-            this.ssp_main.Text = "statusStrip1";
+            this.statusStrip.Location = new System.Drawing.Point(0, 239);
+            this.statusStrip.Name = "statusStrip";
+            this.statusStrip.Size = new System.Drawing.Size(284, 22);
+            this.statusStrip.TabIndex = 1;
+            this.statusStrip.Text = "statusStrip1";
+            this.toolTip.SetToolTip(this.statusStrip, "Up: Scale window up\r\nDown: Scale window down\r\nLeft: Next screen\r\nRight: Previous " +
+        "screen\r\n\r\nPageUp: Higher refresh rate (slower)\r\nPageDown: Lower refresh rate (fa" +
+        "ster)\r\nT: Toggle TopMost");
             // 
             // tss_screen
             // 
@@ -98,21 +102,28 @@
             this.tss_top.Text = "TopMost";
             this.tss_top.Visible = false;
             // 
+            // toolTip
+            // 
+            this.toolTip.AutoPopDelay = 15000;
+            this.toolTip.InitialDelay = 500;
+            this.toolTip.ReshowDelay = 100;
+            // 
             // frm_main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 261);
-            this.Controls.Add(this.ssp_main);
+            this.Controls.Add(this.statusStrip);
             this.Controls.Add(this.pbx_main);
+            this.HelpButton = true;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frm_main";
             this.Text = "ScreenMonitor";
             this.Load += new System.EventHandler(this.frm_main_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.frm_main_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.pbx_main)).EndInit();
-            this.ssp_main.ResumeLayout(false);
-            this.ssp_main.PerformLayout();
+            this.statusStrip.ResumeLayout(false);
+            this.statusStrip.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -122,11 +133,12 @@
 
         private System.Windows.Forms.PictureBox pbx_main;
         private System.Windows.Forms.Timer tmr_screen;
-        private System.Windows.Forms.StatusStrip ssp_main;
+        private System.Windows.Forms.StatusStrip statusStrip;
         private System.Windows.Forms.ToolStripStatusLabel tss_scale;
         private System.Windows.Forms.ToolStripStatusLabel tss_screen;
         private System.Windows.Forms.ToolStripStatusLabel tss_top;
         private System.Windows.Forms.ToolStripStatusLabel tss_rate;
+        private System.Windows.Forms.ToolTip toolTip;
     }
 }
 

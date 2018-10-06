@@ -15,6 +15,7 @@ namespace ScreenMonitor
         private float screenScale = 3;
         private int refreshInd = 2;
         private readonly int[] refreshList = {10, 50, 100, 250, 500, 1000, 2500, 5000};
+        private Bitmap screenshot;
 
         private void frm_main_Load(object sender, EventArgs e)
         {
@@ -22,6 +23,7 @@ namespace ScreenMonitor
             ChangeRate();
         }
 
+        // Main screen refresh loop
         private void tmr_screen_Tick(object sender, EventArgs e)
         {
             try
@@ -35,17 +37,14 @@ namespace ScreenMonitor
                 MessageBox.Show("The current screen was deactivated or not found.\nReturning to screen 1.", "Screen not found",
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
-            GC.Collect();
+
         }
 
-        private static Bitmap GetScreen(Screen screen)
+        // Get a bitmap from the selected screen
+        private Bitmap GetScreen(Screen screen)
         {
-            var screenshot = new Bitmap(screen.Bounds.Width,
-                screen.Bounds.Height);
-            // Create a graphics object from the bitmap
-            var gfxScreenshot = Graphics.FromImage(screenshot);
             // Take the screenshot from the upper left corner to the right bottom corner
-            gfxScreenshot.CopyFromScreen(
+            Graphics.FromImage(screenshot).CopyFromScreen(
                 screen.Bounds.X, screen.Bounds.Y,
                 0, 0,
                 screen.Bounds.Size);
@@ -66,7 +65,11 @@ namespace ScreenMonitor
 
             tss_screen.Text = "Screen: " + (screenInd + 1);
             tss_scale.Text = "Scale: " + screenScale.ToString("F1");
-            Text = ProductName + " - " + (screenInd + 1);
+            Text = ProductName + @" - " + (screenInd + 1);
+
+            // Create bitmap for screenshot
+            screenshot = new Bitmap(Screen.AllScreens[screenInd].Bounds.Width, Screen.AllScreens[screenInd].Bounds.Height);
+            GC.Collect();
         }
 
         private void ChangeRate(int index = 0)
@@ -75,7 +78,9 @@ namespace ScreenMonitor
                 refreshInd += index;
 
             tmr_screen.Interval = refreshList[refreshInd];
-            tss_rate.Text = "Rate: " + refreshList[refreshInd];
+            tss_rate.Text = "Rate: " + (refreshList[refreshInd] < 1000 ?
+                                        refreshList[refreshInd] + @"ms" :
+                                        refreshList[refreshInd] / 1000 + @"s");
         }
 
         private void frm_main_KeyDown(object sender, KeyEventArgs e)
