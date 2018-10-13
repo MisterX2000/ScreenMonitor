@@ -30,7 +30,7 @@ namespace ScreenMonitor
             {
                 pbx_main.Image = GetScreen(Screen.AllScreens[screenInd]);
             }
-            catch (IndexOutOfRangeException ex)
+            catch (IndexOutOfRangeException)
             {
                 screenInd = 0;
                 ChangeWindow();
